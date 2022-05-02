@@ -1,0 +1,27 @@
+#!/bin/bash
+
+export N_MP=
+export N_SL=
+
+export BASEDIR=/afs/cern.ch/user/l/lgiacome/work/LHC_pyht_studies/LHC_wake_conv_study
+export CURRDIR=/afs/cern.ch/user/l/lgiacome/work/LHC_pyht_studies/LHC_wake_conv_study/simulations/LHC_wake_${N_MP}_${N_SL}
+
+PYHTPATH=/afs/cern.ch/user/l/lgiacome/sim_workspace_mpi_py3/PyHEADTAIL
+
+source /afs/cern.ch/work/l/lgiacome/miniconda3/bin/activate
+which python
+
+PYTHONPATH=$PYTHONPATH:$PYHTPATH
+export PYTHONPATH
+echo $PYTHONPATH
+
+# Copy input and executable
+
+cp ${BASEDIR}/LHC.py .
+cp ${BASEDIR}/py_ht_wake_sim.py .
+cp ${BASEDIR}/run_py_ht_wake_sim.py .
+
+
+#execute beam generation
+/afs/cern.ch/work/l/lgiacome/miniconda3/bin/python run_py_ht_wake_sim.py
+
